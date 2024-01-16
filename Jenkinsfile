@@ -2,7 +2,7 @@ def CONTAINER_NAME = "calculator"
 def ENV_NAME = getEnvName(env.BRANCH_NAME)
 def CONTAINER_TAG = getTag(env.BUILD_NUMBER, env.BRANCH_NAME)
 def HTTP_PORT = getHTTPPort(env.BRANCH_NAME)
-def EMAIL_RECIPIENTS = "philippe.guemkamsimo@gmail.com"
+def EMAIL_RECIPIENTS = "elseydi10@gmail.com"
 
 
 node {
@@ -111,7 +111,7 @@ String getHTTPPort(String branchName) {
 
 String getTag(String buildNumber, String branchName) {
     if (branchName == 'main') {
-        return buildNumber + '-unstable'
+        return buildNumber + '-stable'
     }
-    return buildNumber + '-stable'
+    return buildNumber + '-unstable'
 }
