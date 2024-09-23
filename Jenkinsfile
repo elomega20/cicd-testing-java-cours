@@ -34,26 +34,26 @@ node {
             }
         }
 
-        stage("Image Prune") {
-            imagePrune(CONTAINER_NAME)
-        }
-
-        stage('Image Build') {
-            imageBuild(CONTAINER_NAME, CONTAINER_TAG)
-        }
-
-        stage('Push to Docker Registry') {
-            withCredentials([usernamePassword(credentialsId: 'dockerhubcredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                pushToImage(CONTAINER_NAME, CONTAINER_TAG, USERNAME, PASSWORD)
-            }
-        }
-
-        stage('Run App') {
-            withCredentials([usernamePassword(credentialsId: 'dockerhubcredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                runApp(CONTAINER_NAME, CONTAINER_TAG, USERNAME, HTTP_PORT, ENV_NAME)
-
-            }
-        }
+//         stage("Image Prune") {
+//             imagePrune(CONTAINER_NAME)
+//         }
+//
+//         stage('Image Build') {
+//             imageBuild(CONTAINER_NAME, CONTAINER_TAG)
+//         }
+//
+//         stage('Push to Docker Registry') {
+//             withCredentials([usernamePassword(credentialsId: 'dockerhubcredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+//                 pushToImage(CONTAINER_NAME, CONTAINER_TAG, USERNAME, PASSWORD)
+//             }
+//         }
+//
+//         stage('Run App') {
+//             withCredentials([usernamePassword(credentialsId: 'dockerhubcredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+//                 runApp(CONTAINER_NAME, CONTAINER_TAG, USERNAME, HTTP_PORT, ENV_NAME)
+//
+//             }
+//         }
 
     } finally {
         deleteDir()
